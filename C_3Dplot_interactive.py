@@ -45,30 +45,53 @@ for rownum in range(sheet.nrows):
   cplxIDX.append(sheet.row_values(rownum, 14,15))
 cplxIDX.pop(0) #remove first element   
 cplxIDX=[str(r[0]) for r in cplxIDX] # Very nice python way from emil
+ccplx=list(map(float, cplxIDX[:]))
 
-
-ccplx=list(map(float, cplxIDX[:-2]))
 #Import SENSPAEMO Index Columnfrom excel
 workbook = xlrd.open_workbook(file_location)
 sheet = workbook.sheet_by_name('Table1-Database')
 sseIDX = []
 for rownum in range(sheet.nrows):
-  sseIDX.append(sheet.row_values(rownum, 15,16))
+  sseIDX.append(sheet.row_values(rownum, 16,17))
 sseIDX.pop(0) #remove first element   
 sseIDX=[str(r[0]) for r in sseIDX] # Very nice python way from emil
+csse=list(map(float, sseIDX[:]))
 
-
-csse=list(map(float, sseIDX[:-2]))
 #Import sensory modality Index Columnfrom excel
 workbook = xlrd.open_workbook(file_location)
 sheet = workbook.sheet_by_name('Table1-Database')
 smIDX = []
 for rownum in range(sheet.nrows):
-  smIDX.append(sheet.row_values(rownum, 16,17))
+  smIDX.append(sheet.row_values(rownum, 15,16))
 smIDX.pop(0) #remove first element   
 smIDX=[str(r[0]) for r in smIDX] # Very nice python way from emil
-csm=list(map(float, smIDX[:-2]))
+csm=list(map(float, smIDX[:]))
 #print(cplxIDX) 
+
+
+#Import sensory modality Index Columnfrom excel
+workbook = xlrd.open_workbook(file_location)
+sheet = workbook.sheet_by_name('Table1-Database')
+ap = []
+for rownum in range(sheet.nrows):
+  ap.append(sheet.row_values(rownum, 8,9))
+ap.pop(0) #remove first element   
+ap=[str(r[0]) for r in ap] # Very nice python way from emil
+aap=list(map(float, ap[:]))
+
+ml = []
+for rownum in range(sheet.nrows):
+  ml.append(sheet.row_values(rownum, 9,10))
+ml.pop(0) #remove first element   
+ml=[str(r[0]) for r in ml] # Very nice python way from emil
+mml=list(map(float, ml[:]))
+
+dv = []
+for rownum in range(sheet.nrows):
+  dv.append(sheet.row_values(rownum, 11,12))
+dv.pop(0) #remove first element   
+dv=[str(r[0]) for r in dv] # Very nice python way from emil
+ddv=list(map(float, dv[:]))
 
 
 verticesbrain = pd.read_csv('/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Code/Brain_meshes/Brain/vertices.csv',header=None)
@@ -79,9 +102,6 @@ verticesvmPFC = pd.read_csv('/Users/pierre/Google Drive/PFC-Review-REVISED-2/Met
 indicesvmPFC = pd.read_csv('/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Code/Brain_meshes/vmPFC/indices.csv',header=None)
 verticesvlPFC = pd.read_csv('/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Code/Brain_meshes/vlPFC/vertices.csv',header=None)
 indicesvlPFC = pd.read_csv('/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Code/Brain_meshes/vlPFC/indices.csv',header=None)
-points = pd.read_csv('/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Code/Brain_meshes/points.csv',header=None)
-
-
 
 xbrain = verticesbrain.loc[:,0]/100
 ybrain = verticesbrain.loc[:,1]/100
@@ -108,10 +128,11 @@ ivlPFC = indicesvlPFC.loc[:,0]-1
 jvlPFC = indicesvlPFC.loc[:,1]-1
 kvlPFC = indicesvlPFC.loc[:,2]-1
 
-
-AP = points.loc[:,0]/100
-DV = points.loc[:,1]/100
-ML = -points.loc[:,2]/100
+df = pd.DataFrame(list(zip(aap, mml, ddv)), 
+               columns =['AP', 'ML', 'DV'])
+AP = -df.loc[:,'AP']
+ML = -df.loc[:,'ML']
+DV = -df.loc[:,'DV']
 
 
 
@@ -119,7 +140,7 @@ scatter1 = dict(
   mode = "markers",
   name = "y",
   type = "scatter3d",   
-  x = AP, y = DV, z = ML,
+  x = AP, y = ML, z = DV,
   showlegend=False,
   marker = dict( size=10, color=ccplx, colorscale='Reds', 
          colorbar = dict(title = 'Complexity Index',
@@ -136,10 +157,8 @@ clustersbrain = dict(
   opacity = 0.2,
   flatshading = True,
   hoverinfo = "none",
-  showlegend=True,
   type = "mesh3d",
   color='#D3D3D3',
-  legendgroup = "brain",
   x = xbrain, y = ybrain, z = zbrain,
   i = ibrain, j = jbrain, k = kbrain 
 )
@@ -149,10 +168,8 @@ clustersdmPFC = dict(
   opacity = 0.5,
   flatshading = True,
   hoverinfo = "none",
-  showlegend=True,
   type = "mesh3d",
-  color='#007171',
-  legendgroup = "dmPFC",
+  color='#AA2F22',
   x = xdmPFC, y = ydmPFC, z = zdmPFC,
   i = idmPFC, j = jdmPFC, k = kdmPFC 
 )
@@ -162,9 +179,9 @@ clustersvmPFC = dict(
   opacity = 0.5,
     flatshading = True,
   hoverinfo = "none",
-   showlegend=True,
+  #showlegend=True,
   type = "mesh3d",
-  color='#000058',   
+  color='#009ECA',   
   x = xvmPFC, y = yvmPFC, z = zvmPFC,
   i = ivmPFC, j = jvmPFC, k = kvmPFC
 )
@@ -172,15 +189,15 @@ clustersvlPFC = dict(
   alphahull = 7,
   name = "vlPFC",
   opacity = 0.5,
-    flatshading = True,
+  flatshading = True,
   hoverinfo = "none",
   type = "mesh3d",
-  color='#E36713',   
+  color='#E68859',   
   x = xvlPFC, y = yvlPFC, z = zvlPFC,
   i = ivlPFC, j = jvlPFC, k = kvlPFC
 )
 layout = dict(
-  title = 'Mouse PFC Metadata Analysis v3.0',
+  title = 'Mouse PFC Metadata Analysis v4.0',
   scene = dict(
     xaxis = dict( title='AP (mm)',
            zeroline=False,
@@ -284,9 +301,8 @@ layout['updatemenus'] = updatemenus
 layout['annotations'] = annotations 
 fig = dict( data=[scatter1, clustersbrain, clustersdmPFC, clustersvmPFC, clustersvlPFC], layout=layout )
 #fig = dict( data=[scatter, clustersMO, clustersACA], layout=layout )
-# Use py.iplot() for IPython notebook
+
 plot(fig, filename='Mouse_PFC_Metadata_Analysis_v4.0.html')
-#fig2 = dict( data=[scatter1, clustersbrain, clustersdmPFC, clustersvmPFC, clustersvlPFC])
-#show(fig2)
+
 
 
