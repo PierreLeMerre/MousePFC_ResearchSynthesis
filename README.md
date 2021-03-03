@@ -1,6 +1,9 @@
 # MousePFC_ResearchSynthesis
 Code used to generate the Research synthesis figures.
 
+## Database
+[Download the database](https://carlenlab.org/data-protected/)
+
 ## Requirements for Matlab code
 - MATLAB (R2017 and on)
 - This repository (add all folders and subfolders to your MATLAB path)
