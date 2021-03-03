@@ -45,29 +45,29 @@ bregma=[bregma(1) bregma(3) bregma(2)];
 % Workbook: /Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Table1-Database.xlsx
 % Worksheet: Table1-Database
 % Setup the Import Options and import the data
-% Setup the Import Options and import the data
-opts = spreadsheetImportOptions("NumVariables", 17);
+opts = spreadsheetImportOptions("NumVariables", 25);
 % Specify sheet and range
 opts.Sheet = "Table1-Database";
-opts.DataRange = "A2:Q101";
+opts.DataRange = "A2:Y101";
 % Specify column names and types
-opts.VariableNames = ["Var1", "Var2", "Var3", "Var4", "Var5", "Var6", "Var7", "Var8", "MeanAP", "MeanML", "Var11", "CorrectedDV", "Var13", "Var14", "CPLXSCORE", "Auditory1Visual2Somatosensory3olfactory4Gustatory56multisensory", "sensorimotor1contextrule2memorydelay3"];
-opts.SelectedVariableNames = ["MeanAP", "MeanML", "CorrectedDV", "CPLXSCORE", "Auditory1Visual2Somatosensory3olfactory4Gustatory56multisensory", "sensorimotor1contextrule2memorydelay3"];
-opts.VariableTypes = ["char", "char", "char", "char", "char", "char", "char", "char", "double", "double", "char", "double", "char", "char", "double", "double", "double"];
+opts.VariableNames = ["Year", "RefShort", "AreaName", "InactivationMethod", "AP", "ML", "DV", "DVorigin", "MeanAP", "MeanML", "MeanDV", "CorrectedDV", "BrainSurfaceDVCorr", "AllenAtlastiltDVCorr", "Complexityindex", "SensoryModality", "Tasktype", "inMOs", "inACA", "inPL", "inILA", "inORBm", "inORBvl", "inORBl", "AllenAtlasAnnotation2017"];
+opts.VariableTypes = ["double", "string", "categorical", "categorical", "double", "double", "double", "categorical", "double", "double", "double", "double", "double", "double", "double", "double", "double", "categorical", "categorical", "categorical", "categorical", "categorical", "categorical", "categorical", "categorical"];
 % Specify variable properties
-opts = setvaropts(opts, ["Var1", "Var2", "Var3", "Var4", "Var5", "Var6", "Var7", "Var8", "Var11", "Var13", "Var14"], "WhitespaceRule", "preserve");
-opts = setvaropts(opts, ["Var1", "Var2", "Var3", "Var4", "Var5", "Var6", "Var7", "Var8", "Var11", "Var13", "Var14"], "EmptyFieldRule", "auto");
+opts = setvaropts(opts, "RefShort", "WhitespaceRule", "preserve");
+opts = setvaropts(opts, ["RefShort", "AreaName", "InactivationMethod", "DVorigin", "inMOs", "inACA", "inPL", "inILA", "inORBm", "inORBvl", "inORBl", "AllenAtlasAnnotation2017"], "EmptyFieldRule", "auto");
 % Import the data
 T = readtable("/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Table1-Database.xlsx", opts, "UseExcel", false);
-% Clear temporary variables
+
+
+%% Clear temporary variables
 clear opts
 
 MM.AP = T.MeanAP.*100;
 MM.ML = T.MeanML.*100;
 MM.DV = T.CorrectedDV.*100;
-MM.Cplx = T.CPLXSCORE;
-MM.Sens = T.Auditory1Visual2Somatosensory3olfactory4Gustatory56multisensory;
-MM.Task = T.sensorimotor1contextrule2memorydelay3;
+MM.Cplx = T.Complexityindex;
+MM.Sens = T.SensoryModality;
+MM.Task = T.Tasktype;
 
 %% Allen Structutres
 slice_spacing=10;
