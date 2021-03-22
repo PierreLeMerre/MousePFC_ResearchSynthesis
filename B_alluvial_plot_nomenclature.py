@@ -93,7 +93,7 @@ def alluvialPlot(data, leftSide, rightSide, colormap=dict(), ax=None, alpha=0.4,
                           fill=True, lw=0, alpha=alpha))
 
 # Alluvial plot for PFC metaanalysis data
-file_location = "/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Table1-Database.xlsx"
+file_location = "/Path/To/Table1-Database.xlsx"
 df = pd.read_excel(file_location)
 d = df[['Area Name','Allen Area']]  #select two columns in df
 cmap = {'MOs': 'C0', 'ACA': 'C1', 'PL': 'C2', 'IL': 'C3',

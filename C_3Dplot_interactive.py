@@ -26,7 +26,7 @@ def show(fig):
   
   
 #Import Ref Columnfrom excel
-file_location = "/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Table1-Database.xlsx"
+file_location = "/Path/To/Table1-Database.xlsx"
 workbook = xlrd.open_workbook(file_location)
 sheet = workbook.sheet_by_name('Table1-Database')
 refs = []
@@ -94,14 +94,14 @@ dv=[str(r[0]) for r in dv] # Very nice python way from emil
 ddv=list(map(float, dv[:]))
 
 
-verticesbrain = pd.read_csv('/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Code/Brain_meshes/Brain/vertices.csv',header=None)
-indicesbrain = pd.read_csv('/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Code/Brain_meshes/Brain/indices.csv',header=None)   
-verticesdmPFC = pd.read_csv('/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Code/Brain_meshes/dmPFC/vertices.csv',header=None)
-indicesdmPFC = pd.read_csv('/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Code/Brain_meshes/dmPFC/indices.csv',header=None)
-verticesvmPFC = pd.read_csv('/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Code/Brain_meshes/vmPFC/vertices.csv',header=None)
-indicesvmPFC = pd.read_csv('/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Code/Brain_meshes/vmPFC/indices.csv',header=None)
-verticesvlPFC = pd.read_csv('/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Code/Brain_meshes/vlPFC/vertices.csv',header=None)
-indicesvlPFC = pd.read_csv('/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Code/Brain_meshes/vlPFC/indices.csv',header=None)
+verticesbrain = pd.read_csv('/Path/To/Brain_meshes/Brain/vertices.csv',header=None)
+indicesbrain = pd.read_csv('/Path/To/Brain_meshes/Brain/indices.csv',header=None)   
+verticesdmPFC = pd.read_csv('/Path/To/Brain_meshes/dmPFC/vertices.csv',header=None)
+indicesdmPFC = pd.read_csv('/Path/To/Brain_meshes/dmPFC/indices.csv',header=None)
+verticesvmPFC = pd.read_csv('/Path/To/Brain_meshes/vmPFC/vertices.csv',header=None)
+indicesvmPFC = pd.read_csv('/Path/To/Brain_meshes/vmPFC/indices.csv',header=None)
+verticesvlPFC = pd.read_csv('/Path/To/Brain_meshes/vlPFC/vertices.csv',header=None)
+indicesvlPFC = pd.read_csv('/Path/To/Brain_meshes/vlPFC/indices.csv',header=None)
 
 xbrain = verticesbrain.loc[:,0]/100
 ybrain = verticesbrain.loc[:,1]/100
