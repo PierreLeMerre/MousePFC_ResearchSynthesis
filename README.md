@@ -26,7 +26,7 @@ The Allen Institute always explicitly stated that they do not have a definition 
 
 ## DV Correction
 
-Experimenters report the Bregma DV coordinate either relative to Brain surface or relative to Bregma 0 (skull landmark). In the Table1-Database we performed DV corrections to obtain the DV coordinate into the CCFv3. When Bregma was reported form brain surface, we performed a correction with the matlab script “Bregma_DV_correction.mat”. This script plots the contours of the coronal section for the AP and ML coordinates provided in the referenced publication and finds the distance between brain the brain surface and the CCFv3 Bregma. This value needs to be added to the mean DV value provided in the original publication: column "Allen Atlas tilt DV Corr" in Table1-Database. When Bregma was reported from Bregma 0 (skull landmark) we performed both a fixed correction to account for the skull thickness and our tilt correction with the script “Bregma_DV_correction.mat”. 
+Experimenters report the Bregma DV coordinate either relative to Brain surface or relative to Bregma 0 (skull landmark). In the Table1-Database we performed DV corrections to obtain the DV coordinate into the CCFv3. When Bregma was reported form brain surface, we performed a correction with the matlab script “Bregma_DV_correction.mat”. This script plots the contours of the coronal section for the AP and ML coordinates provided in the referenced publication and finds the distance between brain the brain surface and the CCFv3 Bregma. This value needs to be added to the mean DV value provided in the original publication: column "Allen Atlas tilt DV Corr" in Table1-Database. When Bregma was reported from Bregma 0 (skull landmark) no correction is needed. 
 
 ## Limitations
 
