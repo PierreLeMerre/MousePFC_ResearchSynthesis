@@ -8,10 +8,12 @@ Code used to generate the Research synthesis figures.
 - [The Allen Mouse Brain Atlas volume and annotations](http://download.alleninstitute.org/informatics-archive/current-release/mouse_ccf/)
 
 ## Instructions
- - For Python code
+ - For Python code:
+
 Update the paths to the table and meshes in the python scripts to point where you downloaded the files.
 
-- For Matlab code
+- For Matlab code:
+
 After adding  all folders and subfolders to your MATLAB path.
 Update the paths to the table in the matlab scripts to point where you downloaded the files.
 
