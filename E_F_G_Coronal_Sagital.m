@@ -39,25 +39,28 @@ Subdivisions = {'dmPFC','vmPFC','vlPFC'};
 bregma = allenCCFbregma;
 bregma=[bregma(1) bregma(3) bregma(2)];
 
-%% load mouse meta database
-% Import data from spreadsheet
+%% Import data from spreadsheet
 % Script for importing data from the following spreadsheet:
-% Workbook: /Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Table1-Database.xlsx
-% Worksheet: Table1-Database
+%    Workbook: /Users/pierre/Documents/Github/Table1-Database.xlsx
+%    Worksheet: Table1-Database
 % Setup the Import Options and import the data
-opts = spreadsheetImportOptions("NumVariables", 25);
+
+opts = spreadsheetImportOptions("NumVariables", 24);
+
 % Specify sheet and range
 opts.Sheet = "Table1-Database";
-opts.DataRange = "A2:Y101";
+opts.DataRange = "A2:X101";
+
 % Specify column names and types
-opts.VariableNames = ["Year", "RefShort", "AreaName", "InactivationMethod", "AP", "ML", "DV", "DVorigin", "MeanAP", "MeanML", "MeanDV", "CorrectedDV", "BrainSurfaceDVCorr", "AllenAtlastiltDVCorr", "Complexityindex", "SensoryModality", "Tasktype", "inMOs", "inACA", "inPL", "inILA", "inORBm", "inORBvl", "inORBl", "AllenAtlasAnnotation2017"];
-opts.VariableTypes = ["double", "string", "categorical", "categorical", "double", "double", "double", "categorical", "double", "double", "double", "double", "double", "double", "double", "double", "double", "categorical", "categorical", "categorical", "categorical", "categorical", "categorical", "categorical", "categorical"];
+opts.VariableNames = ["Year", "RefShort", "AreaName", "InactivationMethod", "AP", "ML", "DV", "DVorigin", "MeanAP", "MeanML", "MeanDV", "CorrectedDV", "BrainSurfaceDVCorr", "Complexityindex", "SensoryModality", "Tasktype", "inMOs", "inACA", "inPL", "inILA", "inORBm", "inORBvl", "inORBl", "AllenAtlasAnnotation2017"];
+opts.VariableTypes = ["double", "string", "categorical", "categorical", "double", "double", "double", "categorical", "double", "double", "double", "double", "double", "double", "double", "double", "categorical", "categorical", "categorical", "categorical", "categorical", "categorical", "categorical", "categorical"];
+
 % Specify variable properties
 opts = setvaropts(opts, "RefShort", "WhitespaceRule", "preserve");
 opts = setvaropts(opts, ["RefShort", "AreaName", "InactivationMethod", "DVorigin", "inMOs", "inACA", "inPL", "inILA", "inORBm", "inORBvl", "inORBl", "AllenAtlasAnnotation2017"], "EmptyFieldRule", "auto");
-% Import the data
-T = readtable("/Users/pierre/Google Drive/PFC-Review-REVISED-2/Meta-analysis/Table1-Database.xlsx", opts, "UseExcel", false);
 
+% Import the data
+T = readtable("/Users/pierre/Documents/Github/Table1-Database.xlsx", opts, "UseExcel", false);
 
 %% Clear temporary variables
 clear opts
@@ -151,16 +154,28 @@ in_ORBvl=inpolyhedron(structure3d_5,[squeeze(-MM.AP) squeeze(-MM.ML) squeeze(-MM
 in_ORBl=inpolyhedron(structure3d_6,[squeeze(-MM.AP) squeeze(-MM.ML) squeeze(-MM.DV)]);
 in = [in_MOs in_ACA in_PL in_ILA in_ORBm in_ORBl in_ORBvl];
 
-% remove double detected structures, only first one counts
-for i = 1 : size(in,1)
-    if sum(in(i,:))>1
-       ii = find(in(i,:),1);
-       in(i,ii+1) = false;
-    end
-    if i==47
-    in(i,5) = false;    
-    end
-end
+% When the point is on the border, remove double detected structures, only the second one counts
+% for i = 1 : size(in,1)
+%     if sum(in(i,:))>1
+%         disp(num2str(i))
+%        ii = find(in(i,:),1);
+%        in(i,ii) = false;
+%     end
+%     if i==47
+%     in(i,5) = false;    
+%     end
+% end
+
+% Plot to check
+hf= figure;
+patch_handles = patch('Vertices',structure3d_2.vertices, ...
+    'Faces',structure3d_2.faces, ...
+    'FaceColor',[0.5 0.5 0.5],'EdgeColor','none','FaceAlpha',0.1);
+set(gca,'dataaspectratio',[1 1 1]);
+grid on
+hold on
+
+plot3(-MM.AP(in_ILA==1),-MM.ML(in_ILA==1),-MM.DV(in_ILA==1),'ro')
 
 %% Complexity index
 colors_brain1=hex2rgb(Complexity);
