@@ -42,7 +42,7 @@ workbook = xlrd.open_workbook(file_location)
 sheet = workbook.sheet_by_name('Table1-Database')
 cplxIDX = []
 for rownum in range(sheet.nrows):
-  cplxIDX.append(sheet.row_values(rownum, 14,15))
+  cplxIDX.append(sheet.row_values(rownum, 13,14))
 cplxIDX.pop(0) #remove first element   
 cplxIDX=[str(r[0]) for r in cplxIDX] # Very nice python way from emil
 ccplx=list(map(float, cplxIDX[:]))
@@ -52,7 +52,7 @@ workbook = xlrd.open_workbook(file_location)
 sheet = workbook.sheet_by_name('Table1-Database')
 sseIDX = []
 for rownum in range(sheet.nrows):
-  sseIDX.append(sheet.row_values(rownum, 16,17))
+  sseIDX.append(sheet.row_values(rownum, 15,16))
 sseIDX.pop(0) #remove first element   
 sseIDX=[str(r[0]) for r in sseIDX] # Very nice python way from emil
 csse=list(map(float, sseIDX[:]))
@@ -62,7 +62,7 @@ workbook = xlrd.open_workbook(file_location)
 sheet = workbook.sheet_by_name('Table1-Database')
 smIDX = []
 for rownum in range(sheet.nrows):
-  smIDX.append(sheet.row_values(rownum, 15,16))
+  smIDX.append(sheet.row_values(rownum, 14,15))
 smIDX.pop(0) #remove first element   
 smIDX=[str(r[0]) for r in smIDX] # Very nice python way from emil
 csm=list(map(float, smIDX[:]))
