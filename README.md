@@ -40,7 +40,7 @@ The Allen Institute explicitly state that they do not have a definition for Breg
 
 ## DV Correction
 
-Experimenters report the Bregma DV coordinate either relative to Brain surface or relative to Bregma 0 (skull landmark). In the Table1-Database we performed DV corrections to obtain the DV coordinate into the CCFv3. When Bregma was reported from the brain surface, we performed a correction with the matlab script “Bregma_DV_correction.mat”. This script plots the contours of the coronal section for the AP and ML coordinates provided in the referenced publication and finds the distance between brain the brain surface and the CCFv3 Bregma. This value needs to be added to the mean DV value provided in the original publication: column "Brain surface DV Corr" in Table1-Database. When Bregma was reported from Bregma 0 (skull landmark) no correction is needed. 
+Experimenters report the Bregma DV coordinate either relative to Brain surface or relative to Bregma 0 (skull landmark). In the Table1-Database we performed DV corrections to obtain the DV coordinate into the CCFv3. When Bregma was reported from the brain surface, we performed a correction with the matlab script “Bregma_DV_correction.mat”. This script plots the contours of the coronal section for the AP and ML coordinates provided in the referenced publication and finds the distance between the brain surface and the CCFv3 Bregma. This value needs to be added to the mean DV value provided in the original publication: column "Brain surface DV Corr" in Table1-Database. When Bregma was reported from Bregma 0 (skull landmark) no correction is needed. 
 
 ![alt text](https://github.com/PierreLeMerre/MousePFC_ResearchSynthesis/blob/main/DV_correction.png?raw=true)
 
