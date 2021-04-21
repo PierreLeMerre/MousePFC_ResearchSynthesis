@@ -94,13 +94,14 @@ def alluvialPlot(data, leftSide, rightSide, colormap=dict(), ax=None, alpha=0.4,
 
 # Alluvial plot for PFC metaanalysis data
 file_location = "/Path/To/Table1-Database.xlsx"
-df = pd.read_excel(file_location)
-d = df[['Area Name','Allen Area']]  #select two columns in df
+df = pd.read_excel(file_location) # for xlsx
+#df = pd.read_csv(file_location, sep=';') # for csv
+d = df[['Area Name','Allen Atlas Annotation (2017)']]  #select two columns in df
 cmap = {'MOs': 'C0', 'ACA': 'C1', 'PL': 'C2', 'IL': 'C3',
         'mOFC': 'C4', 'vlOFC': 'C5', 'lOFC': 'C6'}
 #cmap2 = {an: 'C'+str(i%8) for i, an in enumerate(d['Area Name'].unique())}
 #cmap2.update(cmap)
-alluvialPlot(d, 'Allen Area', 'Area Name', cmap,
+alluvialPlot(d, 'Allen Atlas Annotation (2017)', 'Area Name', cmap,
              leftOrder=['MOs','ACA','PL','ILA','ORBm','ORBvl','ORBl'],
              rightOrder=['MOs', 'M2', 'aM2', 'ALM', 'MFC', 'fMC', 'RFA', 'dmPFC', 'AC','ACC', 'dACC', 'Cg','A24b',
                           'mPFC', 'PFC', 'PL','PrL','PL - IL','IfL-C','IL','IL-PFC','vmPFC', 'OFC','vmOFC']
