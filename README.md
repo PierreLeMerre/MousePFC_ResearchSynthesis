@@ -23,13 +23,13 @@ Update the paths to the table in the matlab scripts to point where you downloade
 
 The database used to perform our research synthesis is available as a table. This table has the following columns: the year of the study, the short publication reference, the PFC region name used in the original publication, the inactivation method used, the stereotaxic triplet provided in the original article. The averaged coordinates used for the 3D plot into the Allen reference Atlas (ARA) CCFv3, the correction applied to the DV value to translate it into the ARA (see also below), the 3 scores; complexity index, sensory modality and task type, obtained for every publication, 7 logical values (in MOs, in ACA, in PL, in ILA, in ORBm, in ORBvl and in ORBl) indicating in which PFC region the study is found when plotted into the ARA CCFv3 with our method and the name of the Allen PFC region containing the stereotaxic triplet provided in the original publication. The full database table can be downloaded in the following link:
 
-[Download the database](https://carlenlab.org/data-protected/)
+[Download the database](https://carlenlab.org/wp-content/uploads/2021/04/Table1-Database.csv)
 
 ## Details on the sensory modality, task type and complexity index
 
 The primary sensory modality utilized in the studies was simply reported as a score from 1 to 6; auditory (1), visual (2), somatosensory (3), olfactory (4), gustatory (5) or multisensory (combination of two or more modalities; 6), respectively. The task type in the studies was also reported with a score from 1 to 3; sensorimotor transformation (1), context/rule (2), or memory/delay (3), respectively. A complexity index (ranging from 1 to 10) was calculated for each study. The behavioral task in each study was scored according to eight criteria: number of stimuli, complexity of the stimuli (0, 1, or 2), number of actions to perform, complexity of the action to perform (0, 1, or 2), presence of a cue indicating the beginning of a trial (0 or 1), presence of a delay between task events (0 or 1), presence of a short- or long-term memory component (0 or 1), freely moving (1) or head-fixed (0) task. The full table can be downloaded in the following link:
 
-[Download the details of the complexity index](https://carlenlab.org/data-protected/)
+[Download the details of the complexity index](https://carlenlab.org/wp-content/uploads/2021/03/Table2-Complexity_Index_details.csv)
 
 
 ## Bregma in CCFv3
