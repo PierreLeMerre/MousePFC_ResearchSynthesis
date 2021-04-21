@@ -3,7 +3,7 @@
 """
 Created on Wed Jan 15 10:16:32 2020
 
-@author: pielem
+@author: pielem, Alluvial plot function developped by Emil Wärnberg.
 """
 
 import numpy as np
